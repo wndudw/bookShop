@@ -61,15 +61,11 @@
         <a class="link-secondary" href="#" aria-label="Search">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="mx-3" role="img" viewBox="0 0 24 24"><title>Search</title><circle cx="10.5" cy="10.5" r="7.5"/><path d="M21 21l-5.2-5.2"/></svg>
         </a>
-        <c:if test="${member == null}">
-        <a class="btn btn-sm btn-outline-secondary" href="/member/signin">login</a>
-        <a class="btn btn-sm btn-outline-secondary" href="/member/signup">Sign up</a>
-        </c:if>
         <c:if test="${member != null}">
         	<c:if test="${member.status == 9}">
-        		<p><a href="/admin/index">관리자화면</a></p>       	
+        		<p><a href="/">일반회원 화면</a></p>        	
         	</c:if>
-        	<p>${member.userName}님 환영합니다.</p>
+        	<p>${member.userName}님 </p>
         	<button type="button" class="btn btn-dark" onclick="location.href='/member/logout'">로그아웃</button>
         </c:if>
       </div>

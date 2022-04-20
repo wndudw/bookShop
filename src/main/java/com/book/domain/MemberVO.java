@@ -26,6 +26,7 @@ primary key(userId)
 	private String userAddr3;
 	private Date regiDate;
 	private int verify;
+	private int status;
 	
 	
 	public String getUserId() {
@@ -81,6 +82,12 @@ primary key(userId)
 	}
 	public void setVerify(int verify) {
 		this.verify = verify;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 	

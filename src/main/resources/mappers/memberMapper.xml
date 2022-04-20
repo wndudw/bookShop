@@ -12,7 +12,7 @@
 	
 <!-- 로그인 -->
 	<select id="signin" resultType="com.book.domain.MemberVO">
-		select userId,userName,userPass,userPhon,userAddr1,userAddr2,userAddr3,regiDate
+		select userId,userName,userPass,userPhon,userAddr1,userAddr2,userAddr3,regiDate,status
 		from member
 		where userId = #{userId}
 	</select>
