@@ -1,6 +1,8 @@
 package com.book.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.book.domain.MemberVO;
 import com.book.service.memberService;
@@ -38,6 +41,40 @@ public class MemberController {
 		logger.info("post signup()");
 		
 		service.signup(vo);
+		
+		return "redirect:/";
+	}
+	
+	//로그인 get
+	@GetMapping("/signin")
+	public void getSignin() throws Exception{
+		logger.info("get signin()");
+	}
+	
+	//로그인 post
+	@PostMapping("/signin")
+	public String postSignin(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception{
+		logger.info("post signin()");
+
+		HttpSession session = req.getSession();
+		
+		MemberVO login = service.signin(vo);
+		
+		if(login == null) {
+			session.setAttribute("member", null);
+		} else {
+			session.setAttribute("member", login);
+		}
+		
+		return "redirect:/";
+	}
+	
+	//로그아웃
+	@GetMapping("/logout")
+	public String logout(HttpSession session)throws Exception{
+		logger.info("logout()");
+		
+		session.invalidate();
 		
 		return "redirect:/";
 	}

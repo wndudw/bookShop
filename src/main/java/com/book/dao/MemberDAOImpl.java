@@ -23,4 +23,11 @@ public class MemberDAOImpl implements MemberDAO {
 		
 	}
 
+	//로그인
+	@Override
+	public MemberVO signin(MemberVO vo) throws Exception {
+	
+		return sql.selectOne(namespace + ".signin", vo);
+	}
+
 }
