@@ -26,8 +26,8 @@ public class MemberController {
 	@Inject
 	memberService service;
 	
-//	@Autowired
-//	BCryptPasswordEncoder passEncoder;
+	@Autowired
+	BCryptPasswordEncoder passEncoder;
 	
 	//회원가입 get
 	@GetMapping("/signup")
@@ -39,6 +39,10 @@ public class MemberController {
 	@PostMapping("/signup")
 	public String postSignup(MemberVO vo) throws Exception{
 		logger.info("post signup()");
+		
+		String inputPass = vo.getUserPass();
+		String pass = passEncoder.encode(inputPass);
+		vo.setUserPass(pass);
 		
 		service.signup(vo);
 		
@@ -60,10 +64,13 @@ public class MemberController {
 		
 		MemberVO login = service.signin(vo);
 		
-		if(login == null) {
-			session.setAttribute("member", null);
+		boolean passMatch =passEncoder.matches(vo.getUserPass(), login.getUserPass());
+		
+		if(login != null && passMatch) {
+			session.setAttribute("member", login);	
 		} else {
-			session.setAttribute("member", login);
+			session.setAttribute("member", null);
+			return "redirect:/member/signin";
 		}
 		
 		return "redirect:/";
