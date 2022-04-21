@@ -16,11 +16,13 @@ public class AdminInterceptor extends HandlerInterceptorAdapter{
 		HttpSession session = req.getSession();
 		MemberVO member = (MemberVO) session.getAttribute("member");	
 		
+		//비로그인상태이면..
 		if(member == null) {
 			res.sendRedirect("/member/signin");
 			return false;
 		}
 		
+		//관리자가 아니면..
 		if(member.getStatus() != 9) {
 			res.sendRedirect("/");
 			return false;

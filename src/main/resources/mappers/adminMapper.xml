@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.book.mappers.adminMapper">
+
+	<!-- 카테고리 호출 -->
+	<select id="category" resultType="com.book.domain.CategoryVO">
+		with recursive cte as(
+		select cateName, cateCode, cateCodeRef, 1 as level from book_category
+		where cateCodeRef is null
+		union all
+		select c.cateName, c.cateCode, c.cateCodeRef, 1+level as level from
+		book_category c
+		inner join cte
+		on c.cateCodeRef = cte.cateCode
+		)
+		select cateName,cateCode,cateCodeRef,level from cte;
+	</select>
+
+</mapper>

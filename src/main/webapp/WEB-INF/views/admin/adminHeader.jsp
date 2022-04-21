@@ -74,10 +74,10 @@
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="/bookKo/bookKoList">국내도서</a>
-      <a class="p-2 link-secondary" href="#">U.S.</a>
-      <a class="p-2 link-secondary" href="#">Technology</a>
-      <a class="p-2 link-secondary" href="#">Design</a>
+      <a class="p-2 link-secondary" href="/admin/bookList">도서 등록</a>
+      <a class="p-2 link-secondary" href="#">도서 목록</a>
+      <a class="p-2 link-secondary" href="#">도서 소감</a>
+      <a class="p-2 link-secondary" href="#">유저 목록</a>
       <a class="p-2 link-secondary" href="#">Culture</a>
       <a class="p-2 link-secondary" href="#">Business</a>
       <a class="p-2 link-secondary" href="#">Politics</a>
