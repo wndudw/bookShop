@@ -17,5 +17,24 @@
 		)
 		select cateName,cateCode,cateCodeRef,level from cte;
 	</select>
+	
+	<!-- 상품등록 -->
+	<insert id="register">
+		insert into book_ko (koName, cateCode, bookPrice, bookcount, bookDes)
+		values (#{koName}, #{cateCode}, #{bookPrice}, #{bookCount}, #{bookDes})
+	</insert>
 
+	<!-- 상품 목록 -->
+	<select id="list" resultType="com.book.domain.BookKoVO">
+		select koNum, koName, cateCode, bookPrice, bookcount, bookDes, bookImg, bookDate
+		from book_ko
+		order by koNum desc
+	</select>
+	
+	<!-- 상세보기  -->
+	<select id="view" resultType="com.book.domain.BookKoVO">
+		select koNum, koName, cateCode, bookPrice, bookcount, bookDes, bookImg, bookDate
+		from book_ko
+		where koNum = #{koNum}
+	</select>
 </mapper>

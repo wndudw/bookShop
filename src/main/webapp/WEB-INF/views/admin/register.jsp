@@ -9,6 +9,15 @@
 <div id="nav">
 	<%@ include file="adminHeader.jsp"%>
 </div>
+
+<style type="text/css">
+	.inputArea { margin:10px 0; }
+	select { width:100px; }
+	label { display:inline-block; width:70px; padding:5px; }
+	label[for='bookDes'] { display:block; }
+	input { width:150px; }
+	textarea#bookDes { width:400px; height:180px; }
+</style>
 </head>
 <body>
 <div>
@@ -17,15 +26,42 @@
 
 <form role="form" method="post" autocomplete="off">
  
+ <div class="inputArea">
  <label>1차 분류</label>
  <select class="category1">
   <option value="">전체</option>
  </select>
  
  <label>2차 분류</label>
- <select class="category2">
+ <select class="category2" name="cateCode">
   <option value="">전체</option>
  </select>
+</div>
+
+ <div class="inputArea">
+ 	<label for="koName">상품명</label>
+ 	<input type="text" id="koName" name="koName" />
+ </div>
+ 
+  <div class="inputArea">
+ 	<label for="bookPrice">상품가격</label>
+ 	<input type="text" id="bookPrice" name="bookPrice" />
+ </div>
+ 
+  <div class="inputArea">
+ 	<label for="bookCount">상품수량</label>
+ 	<input type="text" id="bookCount" name="bookCount" />
+ </div>
+ 
+   <div class="inputArea">
+ 	<label for="bookDes">상품소개</label>
+ 	<textarea rows="7" cols="50" id="bookDes" name="bookDes"></textarea>
+ </div>
+ 
+ <div>
+ 	<button type="submit" id="submit_btn">등록</button>
+ </div>
+ 
  
 </form>
 
@@ -86,7 +122,7 @@ $(document).on("change","select.category1",function(){
 	$("option:selected", this).each(function(){
 
 		var selectVal = $(this).val();
-		cate2Select.append("<option value=''>전체</option>");
+		cate2Select.append("<option value='" + selectVal + "'>전체</option>");
 
 		for(var i=0; i<cate2Arr.length; i++){
 			if(selectVal == cate2Arr[i].cateCodeRef){
